@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="action_subject" model="ir.actions.act_window">
+        <field name="name">Subject</field>
+        <field name="res_model">subject.subject</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_subject_subject_tree_final" model="ir.ui.view">
+        <field name="name">Subject</field>
+        <field name="model">subject.subject</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" /> 
+                <field name="marks" /> 
+                <field name="persantage" /> 
+                <field name="result" /> 
+                <field name="date" /> 
+                <field name="practicle" /> 
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_subject_subject_form_final" model="ir.ui.view">
+        <field name="name">Subject</field>
+        <field name="model">subject.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="change_orm" type="object" string="confirm"/>
+                </header>
+                <sheet>
+                    <notebook>
+                        <page string="General Info">                            
+                            <group>
+                                <field name="name" /> 
+                            </group>
+                        </page>
+                        <page string="marks">
+                            <group>
+                                <field name="marks" /> 
+                                <field name="persantage" /> 
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <group>                                
+                                <field name="result" /> 
+                                <field name="date" /> 
+                                <field name="practicle" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="school_management" name="School_management" />
+    <menuitem id="menu_subject" name="Subject" parent="school_management" />
+    <menuitem id="sub_menu_subject" name="Subject Record" parent="menu_subject" action="action_subject" />
+
+</odoo>

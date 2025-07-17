@@ -1,0 +1,63 @@
+Char
+Integer
+Float
+Date
+Selection
+Boolean
+
+
+
+PY methods:
+Compute = Used For calculate in Fields data 
+OnChange = 
+Depends
+
+
+REf : /home/sonal/odoo/odoo17/addons/sale_management
+
+=====================
+Page , Notebook 
+<notebook>
+	<page>
+		<group>
+			<group>
+				<field>
+			</group>
+		</group>
+	</page>
+</notebook>
+
+Methods:
+Onchange, compute, depends
+
+Relational Fields : One2many
+
+
+
+Btn: (State)Draft,inprogress, done, cancle
+darft -- > cancle , inprogress
+inpro --> done
+done -- > draft
+cancle -- > draft
+
+
+Chatter 
+oe-dev-chatter
+
+=============
+ORM methods: 
+Search* 
+browse
+create
+unlink
+write
+
+
+Image (binary field) oe-dev-avatar 
+name='image_1920'
+
+
+======================
+when too much load a localhost then use this command:
+
+pkill-9 python
