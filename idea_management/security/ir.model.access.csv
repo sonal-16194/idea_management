@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_idea_idea,access_idea_idea,model_idea_idea,,1,1,1,1
+access_idea_create,access_idea_create,model_idea_create_idea_create,,1,1,1,1
+access_cancel_reason_wizard,cancel.reason.wizard,model_cancel_reason_wizard,,1,1,1,1
+access_project_task_custom,access_project_task_custom,model_project_task,base.group_user,1,1,1,1

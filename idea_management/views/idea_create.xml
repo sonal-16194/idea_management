@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+
+		
+
+		<record id="view_cancel_reason_wizard_form" model="ir.ui.view">
+    		<field name="name">cancel.reason.wizard.form</field>
+    		<field name="model">cancel.reason.wizard</field>
+    		<field name="arch" type="xml">
+        		<form string="Cancel Reason">
+            		<group>
+                		<field name="reason"/>
+            		</group>
+            		<footer>
+                		<button name="confirm_cancel" type="object" string="Confirm Cancellation" class="btn-primary"/>
+                		<button string="Cancel" class="btn-secondary" special="cancel"/>
+            		</footer>
+        		</form>
+    		</field>
+		</record>
+
+
+		<record id="action_cancel_reason_wizard" model="ir.actions.act_window">
+    		<field name="name">Cancel Reason</field>
+    		<field name="res_model">cancel.reason.wizard</field>
+    		<field name="view_mode">form</field>
+    		<field name="view_id" ref="view_cancel_reason_wizard_form"/>
+    		<field name="target">new</field>
+		</record>
+
+
+
+		<record id="action_idea_create" model="ir.actions.act_window">
+			<field name="name">Idea_create</field>
+			<field name="res_model">idea_create.idea_create</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+
+		<record id="view_idea_kanban" model="ir.ui.view">
+    		<field name="name">idea.create.kanban</field>
+  			<field name="model">idea_create.idea_create</field>
+  			<field name="arch" type="xml">
+    			<kanban>
+      				
+      				<templates>
+        				<t t-name="kanban-box">
+          					<div class="oe_kanban_global_click">
+            					<strong>Subject:----    <field name="name"/></strong>
+            					<p><b>Description:---- </b>    <field name="description"/></p>
+            					<p><b>Creates At:-----</b> <field name="created_at"/></p>
+          					</div>
+        				</t>
+      				</templates>
+    			</kanban>
+  			</field>
+		</record>
+
+
+
+
+
+		<record id="action_idea_create_idea_create_tree_final" model="ir.ui.view">
+			<field name="name">Idea_create</field>
+			<field name="model">idea_create.idea_create</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="category_name" />
+					<field name="idea_manager" />
+					<field name="other_members" widget="many2many_tags"/>
+					<field name="suggested_by" widget="many2many_tags"/>
+					<field name="responsible_members" widget="many2many_tags"/>
+					<field name="created_at" />
+					<field name="description" />
+					
+				</tree>
+			</field>
+		</record>
+
+
+
+		<record id="action_idea_create_idea_create_search_final" model="ir.ui.view">
+			<field name="name">Idea_create_search</field>
+			<field name="model">idea_create.idea_create</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name" />					
+					<field name="description" />
+					<separator/>
+					<filter string="category_name" name="category_name" domain="[('category_name','=','improvement')]"/>
+					<group expand="1" string="Group By">
+						<filter string="Idea Manager" name="idea_manager" context="{'group_by' : 'idea_manager'}" />
+					</group>
+
+					
+				</search>
+			</field>
+		</record>
+		<record id="action_idea_create_idea_create_form_final" model="ir.ui.view">
+        	<field name="name">Idea_Create Form View</field>
+        	<field name="model">idea_create.idea_create</field>
+        	<field name="arch" type="xml">
+            	<form string="Idea Create">
+            		<header>
+
+            			<field name="state" widget="statusbar" statusbar_visible="new,pending,confirmed,Approved,cancelled"  />
+   	                   
+   	                    <button name="request_to_confirmation" type="object" string="Request to Confirmed" 	/>
+                   	    <button name="request_to_approved" type="object" string="Request to Approved"
+                        visible="record.state == 'pending'"/>
+                		<button name="approve" type="object" string="Approve"
+                        visible="record.state == 'confirmed'"/>
+                        <button name="%(action_cancel_reason_wizard)d" string="Cancel"  type="action"
+        				context="{'default_reason': '', 'active_model': 'idea_create', 'active_ids': [active_id]}" visible="record.state == 'cancelled'"/> 
+
+                        
+            		</header>
+                
+            	    <sheet> 
+
+            	    	<group>
+            	    		<group>
+                	    		<field name="name"/>
+                	    	
+            	    			<separator string="Related Persons" colspan="4"/>
+    							
+                	    		
+                	    		<field name="idea_manager" />
+								<field name="other_members" widget="many2many_tags"/>
+								<field name="suggested_by" widget="many2many_tags" />
+								<field name="responsible_members" widget="many2many_tags"/>
+
+                	    	</group>  
+
+                	    
+                	        <group>
+                	    		<separator string="Related Information" colspan="4"/>
+
+                	    		<field name="category_name" />
+                	    		<field name="created_at"/>
+                	    	</group>
+
+                		</group>
+                		<group>
+                			<field name="description" /> 
+                		</group>
+
+
+                 	 
+                	 </sheet>
+                     <div class="oe_chatter">
+                	    <field name="message_follower_ids" widget="mail_followers"/>
+                    	<field name="activity_ids" widget="mail_activity"/>
+                    	<field name="message_ids" widget="mail_thread"/>
+                	</div>
+               
+                </form>
+            </field>
+        </record>  
+    
+ 
+		<menuitem id="menu_idea_root" name="Idea Management" />
+		
+ 		<menuitem id="sub_menu_idea_create" name="idea_create" parent="menu_idea_list" action="action_idea_create"/>  
+	</data>
+</odoo>
+

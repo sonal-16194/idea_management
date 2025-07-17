@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<record id="action_idea" model="ir.actions.act_window">
+			<field name="name">Idea categgories</field>
+    		<field name="res_model">idea.idea</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+
+		
+		
+    
+		<record id="action_idea_idea_tree_final" model="ir.ui.view">
+			<field name="name">Idea categgories</field>
+			<field name="model">idea.idea</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="category_name" />
+					<field name="responsible_users" />
+
+
+				</tree>
+			</field>
+		</record>
+		<record id="view_kanban_idea_management" model="ir.ui.view">
+			<field name="name">idea_management_kanban</field>
+			<field name="model">idea.idea</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+								<field name="responsible_users"/>
+								<field name="category_name"/>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+		<record id="action_idea_idea_form_final" model="ir.ui.view">
+        	<field name="name">Idea Form View</field>
+        	<field name="model">idea.idea</field>
+        	<field name="arch" type="xml">
+            	<form>
+            		<header>
+            			
+
+            		</header>
+                
+                	<sheet> 
+                	
+					
+						<group>
+                        	<field name="responsible_users" />                     
+                        	<field name="category_name" />                     
+                    	</group>   
+                	</sheet>
+               
+            	</form>
+        	</field>
+    	</record>  
+    	
+    
+
+
+
+
+
+
+
+		<menuitem id="menu_idea_root" name="Idea Management" />
+		<menuitem id="menu_idea_list" name="Idea Management" parent="menu_idea_root"  />
+		<menuitem id="sub_menu_idea" name="idea categgories" parent="menu_idea_list" action="action_idea"/>  
+
+		 
+	</data>
+</odoo>

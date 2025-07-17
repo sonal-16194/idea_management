@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<data>
+		<record id="view_task_form_inherit_idea_create" model="ir.ui.view">
+    		<field name="name">project.task.form.inherit.idea_create</field>
+    		<field name="model">project.task</field>
+    		<field name="inherit_id" ref="project.view_task_form2"/> <!-- or whichever is the original task form -->
+    		<field name="arch" type="xml">
+        		<xpath expr="//sheet//group" position="inside">
+            		<field name="idea_create_id" context="{'form_view_ref': 'your_module.view_idea_create_form'}" options="{'no_create': False}"/>/>
+        		</xpath>
+    		</field>
+		</record>
+    	<record id="action_task_window" model="ir.actions.act_window">
+			<field name="name">Tasks</field>
+			<field name="res_model">project.task</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="action_task_task_tree_final" model="ir.ui.view">
+			<field name="name">Task</field>
+			<field name="model">project.task</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="idea_create_id" />
+					
+
+				</tree>
+			</field>
+		</record>
+		<record id="action_task_task_form_final" model="ir.ui.view">
+        	<field name="name">Task view</field>
+        	<field name="model">project.task</field>
+        	<field name="arch" type="xml">
+            	<form>
+                
+                	<sheet> 
+                	
+					
+						<group>
+                        	<field name="idea_create_id" widget="Many2one_tags" />                     
+                        	                    
+                    	</group>   
+                	</sheet>
+               
+            	</form>
+        	</field>
+    	</record>  
+    	
+    
+
+
+
+
+
+
+
+		<menuitem id="menu_idea_root" name="Idea Management" />
+		<menuitem id="menu_task" name="task" parent="menu_idea_root" action="action_task_window"/>
+
+	</data>
+</odoo>

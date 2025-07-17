@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- report_action.xml -->
+ 
+  <!--<report
+    id="action_report_idea_template"
+    model="idea.idea"
+    string="Print idea_management"
+    report_type="qweb-pdf"
+    name="idea_management.report_idea_document"
+    file="idea_management.report_idea_document"
+    print_report_name="'Idea - %s' % (object.name)"
+  />-->
+
+<odoo>
+  <record id="action_report_idea_create" model="ir.actions.report">
+    <field name="name">Idea Subject</field>
+    <field name="model">idea_create.idea_create</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">idea_management.report_idea_document</field>
+    <field name="report_file">idea_management.report_idea_document</field>
+    <field name="binding_model_id" ref="model_idea_create_idea_create"/>
+    <field name="binding_type">report</field>
+  </record>
+</odoo>
+
